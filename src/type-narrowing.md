@@ -1,26 +1,40 @@
 Type Narrowing
 
-Type narrowing means refining a broad type into a more specific one inside a code block. TypeScript understands checks like typeof, in, and instanceof.
+Type narrowing refines a broad type into a more specific one inside a code block. Use typeof for primitives:
 
 ts
-function printId(id: string | number) {
-  if (typeof id === "string") {
-    console.log(id.toUpperCase()); // string here
-  } else {
-    console.log(id.toFixed(2)); // number here
-  }
+function show(x: string | number) {
+
+  if (typeof x === "string") return x.toUpperCase();
+
+  return x.toFixed(2);
 }
 
-For object unions, a discriminant property works well:
+
+Use instanceof to check class instances:
 
 ts
-type Shape =
-  | { kind: "circle"; radius: number }
-  | { kind: "square"; side: number };
+function info(e: Error | Date) {
 
-function area(s: Shape) {
-  return s.kind === "circle" ? Math.PI * s.radius ** 2 : s.side ** 2;
+  if (e instanceof Date) return e.getFullYear();
+
+  return e.message;
+}
+
+Use the in operator to check whether a property exists:
+
+ts
+
+type Cat = { meow(): void };
+
+type Dog = { bark(): void };
+
+function speak(p: Cat | Dog) {
+
+  if ("meow" in p) p.meow();
+  
+  else p.bark();
 }
 Conclusion
 
-Choose interface for extendable object contracts and type for unions and compositions. Combine them with type narrowing, and TypeScript will catch many bugs before your code ever runs.
+Use interface for extendable object contracts and type for unions and compositions. Combine them with typeof, instanceof, and in narrowing, and TypeScript will catch many bugs before your code runs.
