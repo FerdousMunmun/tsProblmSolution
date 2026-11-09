@@ -66,3 +66,79 @@ function concatenateArrays<T>(...arrays: T[][]): T[] {
 (concatenateArrays(["a", "b"], ["c", "d"]));
 
 (concatenateArrays([1, 2], [3, 4], [5]));
+
+// ----------------------------
+
+interface Course {
+    title: string;
+    students: number;
+    isPublished: boolean;
+}
+
+function getPopularCourses(
+    courses: Course[],
+    minStudents: number
+): Course[] {
+
+    return courses.filter((course) => {
+        return course.isPublished === true &&
+               course.students >= minStudents;
+    });
+
+}
+
+
+
+const courses: Course[] = [
+    {
+        title: "TypeScript Mastery",
+        students: 120,
+        isPublished: true
+    },
+    {
+        title: "Draft Course",
+        students: 200,
+        isPublished: false
+    },
+    {
+        title: "Basic HTML",
+        students: 45,
+        isPublished: true
+    },
+    {
+        title: "Next.js Pro",
+        students: 85,
+        isPublished: true
+    }
+];
+
+
+
+console.log(getPopularCourses(courses, 80));
+
+// ------------------------------
+
+function pluckValues<T, K extends keyof T>(
+    items: T[],
+    key: K
+): T[K][] {
+
+    return items.map((item) => item[key]);
+
+}
+
+
+
+const users = [
+    { id: 1, name: "Rakib", role: "Admin" },
+    { id: 2, name: "Sadia", role: "Editor" },
+    { id: 3, name: "Tariq", role: "Subscriber" }
+];
+
+
+
+console.log(pluckValues(users, "name"));
+
+console.log(pluckValues(users, "id"));
+
+console.log(pluckValues(users, "role"));
