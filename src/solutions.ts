@@ -39,3 +39,18 @@ function processInput(value: string | number | boolean): string | number {
 (processInput(7)),
 (processInput(true)),
 (processInput(false))
+
+
+
+function formatCoordinate(
+    coordinate: readonly [number, number, string]
+): string {
+    const latitude = coordinate[0];
+    const longitude = coordinate[1]
+    const locationName = coordinate[2];
+    return `Location: ${locationName} (${latitude}, ${longitude})`;
+}
+
+(formatCoordinate([23.81, 90.41, "Dhaka"]));
+
+(formatCoordinate([22.35, 91.78, "Chittagong"]));
