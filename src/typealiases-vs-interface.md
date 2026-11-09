@@ -11,11 +11,14 @@ ts
 interface User {
   name: string;
 }
+
 interface User {
   age: number; // declaration merging works
 }
 
+
 type ID = string | number; // only type can do this
+
 type Admin = User & { role: string };
 
 Use interface for object shapes and public APIs. Use type for unions and complex combinations.
