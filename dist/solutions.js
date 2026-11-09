@@ -7,6 +7,7 @@ function multiplyValue(value, multiplier) {
 (multiplyValue(10)),
     (multiplyValue(10, 5)),
     (multiplyValue(7, 0));
+// -------------------------
 function processInput(value) {
     if (typeof value === "string") {
         return value.trim().toLowerCase();
@@ -22,6 +23,7 @@ function processInput(value) {
     (processInput(7)),
     (processInput(true)),
     (processInput(false));
+// ----------------------------
 function formatCoordinate(coordinate) {
     const latitude = coordinate[0];
     const longitude = coordinate[1];
@@ -30,6 +32,7 @@ function formatCoordinate(coordinate) {
 }
 (formatCoordinate([23.81, 90.41, "Dhaka"]));
 (formatCoordinate([22.35, 91.78, "Chittagong"]));
+// -------------------------
 function concatenateArrays(...arrays) {
     return arrays.flat();
 }
@@ -63,19 +66,66 @@ const courses = [
         isPublished: true
     }
 ];
-console.log(getPopularCourses(courses, 80));
+(getPopularCourses(courses, 80));
 // ------------------------------
 function pluckValues(items, key) {
     return items.map((item) => item[key]);
 }
-// Sample Data
 const users = [
     { id: 1, name: "Rakib", role: "Admin" },
     { id: 2, name: "Sadia", role: "Editor" },
     { id: 3, name: "Tariq", role: "Subscriber" }
 ];
-// Function Calls
-console.log(pluckValues(users, "name"));
-console.log(pluckValues(users, "id"));
-console.log(pluckValues(users, "role"));
+(pluckValues(users, "name"));
+(pluckValues(users, "id"));
+(pluckValues(users, "role"));
+// ---------------------
+class Employee {
+    name;
+    baseSalary;
+    constructor(name, baseSalary) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+    getDetails() {
+        return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
+    }
+}
+class Manager extends Employee {
+    department;
+    constructor(name, baseSalary, department) {
+        super(name, baseSalary);
+        this.department = department;
+    }
+    getRoleInfo() {
+        return `Manager of ${this.department}: ${this.name}`;
+    }
+}
+const manager = new Manager("Alice", 50000, "Engineering");
+(manager.getDetails());
+(manager.getRoleInfo());
+// ----------------------------
+function validateAgeAsync(age) {
+    return new Promise((resolve, reject) => {
+        if (age >= 18) {
+            setTimeout(() => {
+                resolve("Access Granted");
+            }, 1000);
+        }
+        else {
+            reject(new Error("Access Denied: Must be 18 or older"));
+        }
+    });
+}
+async function testAge() {
+    try {
+        console.log(await validateAgeAsync(20));
+        console.log(await validateAgeAsync(15));
+        console.log(await validateAgeAsync(18));
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+testAge();
 export {};

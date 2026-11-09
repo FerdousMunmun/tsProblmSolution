@@ -15,7 +15,7 @@ function multiplyValue (value: number, multiplier?: number): number {
 (multiplyValue(7,0))
 
 
-
+// -------------------------
 
 
 function processInput(value: string | number | boolean): string | number {
@@ -40,7 +40,7 @@ function processInput(value: string | number | boolean): string | number {
 (processInput(true)),
 (processInput(false))
 
-
+// ----------------------------
 
 function formatCoordinate(
     coordinate: readonly [number, number, string]
@@ -55,7 +55,7 @@ function formatCoordinate(
 
 (formatCoordinate([22.35, 91.78, "Chittagong"]));
 
-
+// -------------------------
 
 function concatenateArrays<T>(...arrays: T[][]): T[] {
     return arrays.flat();
@@ -67,7 +67,7 @@ function concatenateArrays<T>(...arrays: T[][]): T[] {
 
 (concatenateArrays([1, 2], [3, 4], [5]));
 
-// ----------------------------
+
 
 interface Course {
     title: string;
@@ -191,6 +191,41 @@ const manager = new Manager("Alice", 50000, "Engineering");
 
 
 
-console.log(manager.getDetails());
+(manager.getDetails());
 
-console.log(manager.getRoleInfo());
+(manager.getRoleInfo());
+
+// ----------------------------
+
+
+
+function validateAgeAsync(age: number): Promise<string> {
+
+    return new Promise<string>((resolve, reject) => {
+
+        if (age >= 18) {
+
+            setTimeout(() => {
+                resolve("Access Granted");
+            }, 1000);
+
+        } else {
+
+            reject(new Error("Access Denied: Must be 18 or older"));
+
+        }
+
+    });
+
+}
+async function testAge() {
+    try {
+        console.log(await validateAgeAsync(20));
+        console.log(await validateAgeAsync(15));
+        console.log(await validateAgeAsync(18));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+testAge();
