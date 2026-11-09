@@ -218,14 +218,3 @@ function validateAgeAsync(age: number): Promise<string> {
     });
 
 }
-async function testAge() {
-    try {
-        console.log(await validateAgeAsync(20));
-        console.log(await validateAgeAsync(15));
-        console.log(await validateAgeAsync(18));
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-testAge();
